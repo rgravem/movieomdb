@@ -1,7 +1,9 @@
 console.log(' js sourced');
 // global search array
 var searchResults = [];
+// global for trash
 var trashBin = [];
+// hide empty trash button if bin is empty
 var buttonHide = function(){
   if (trashBin == '') {
     $('#emptyDumpster').hide();
@@ -18,6 +20,7 @@ $( document ).ready( function(){
     // get user input
     var movieName = $('#movieNameIn').val();
     console.log('searching for:', movieName );
+    // alert user if field is blank
     if (movieName == '') {
       alert('Please enter a movie name');
     }else{
@@ -42,6 +45,7 @@ $( document ).ready( function(){
   }); // end searchButton on click
 
   $('#emptyDumpster').on('click', function(){
+    // return movies in trashBin to the list
     console.log( 'clicked dumpster');
     for (var i = 0; i < trashBin.length; i++) {
       $( '#resultsDiv').append('<p><b>' + trashBin[i].Title + '</b> (' + trashBin[i].Year + ')</p>');
@@ -63,6 +67,7 @@ buttonHide();
 };
 
 var deleteMe = function( index ){
+  // delete specific movie from list and push to trashBin
   console.log('in deleteMe');
   var trash = {
     Title: searchResults[index].Title,
